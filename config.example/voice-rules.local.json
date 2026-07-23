@@ -1,0 +1,21 @@
+{
+  "_comment": "Example project-local overlay, merged ON TOP of the shared tools/voice-rules.json by voice-gate.py --local-rules. The overlay only ADDS rules; it cannot remove a shared one. Copy this file to config/voice-rules.local.json in your real project and replace the example entries below with your own. The overlay is a good place for two kinds of rule: (1) style preferences specific to your project, and (2) hard 'never publish this' guardrails — e.g. a real client name, an NDA'd project codename, anything you must never let a generated draft surface. The example guardrail below is fictional; swap it for your actual guardrail list, and keep that file itself out of any copy of this repo you ever make public or hand to someone else.",
+  "hard_fail": {
+    "regex": [
+      {
+        "id": "example-confidential-project-guardrail",
+        "pattern": "\\bProject Nightjar\\b",
+        "note": "EXAMPLE ONLY: a do-not-publish guardrail for a confidential engagement codename. Replace with your own; delete if you don't need one."
+      }
+    ]
+  },
+  "advisory": {
+    "words": [
+      {
+        "base": "example-preferred-term",
+        "variants": ["utilize", "utilizes", "utilized", "utilizing"],
+        "note": "EXAMPLE: prefer 'use' — a stand-in for whatever house-style word swap your own voice profile turns up."
+      }
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "_comment": "Starter universal, medium-agnostic voice rules. This is the base rule set every project can rely on; a project adds its own preferences on top via voice-gate.py --local-rules PATH (see config.example/voice-rules.local.json). Reclassify a token by moving it between hard_fail and advisory. Keep the base set short and genuinely universal — the AI-tell words and em-dash rule below are widely recognized model tells, not one author's stylistic taste.",
+  "hard_fail": {
+    "words": [
+      {
+        "base": "delve",
+        "variants": ["delve", "delves", "delved", "delving"],
+        "note": "AI tell"
+      },
+      {
+        "base": "underscore",
+        "variants": ["underscore", "underscores", "underscored", "underscoring"],
+        "note": "AI tell (the verb)"
+      },
+      {
+        "base": "showcase",
+        "variants": ["showcase", "showcases", "showcased", "showcasing"],
+        "note": "AI tell"
+      },
+      {
+        "base": "seamless",
+        "variants": ["seamless", "seamlessly"],
+        "note": "AI tell"
+      },
+      {
+        "base": "robust",
+        "variants": ["robust", "robustly", "robustness"],
+        "note": "AI tell"
+      }
+    ],
+    "phrases": [
+      {
+        "phrase": "it is important to note",
+        "note": "banned filler"
+      },
+      {
+        "phrase": "it's important to note",
+        "note": "banned filler"
+      }
+    ],
+    "chars": [
+      {
+        "id": "em-dash",
+        "char": "—",
+        "skip_line_regex": "^\\s*#{1,6}\\s|^\\s*[—–-]+\\s*$",
+        "note": "No em-dashes in prose (recognized AI tell); use a comma or parenthetical, or restructure. Headings and pure divider lines are exempt (structural, not prose)."
+      }
+    ],
+    "regex": [
+      {
+        "id": "en-dash",
+        "pattern": "(?:\\s–)|(?:–\\s)|(?:[A-Za-z]–[A-Za-z])",
+        "skip_line_regex": "^\\s*#{1,6}\\s|^\\s*[—–-]+\\s*$",
+        "note": "En-dash used as em-dash in prose. Numeric ranges like 3–5 are allowed; headings and divider lines are exempt."
+      }
+    ]
+  },
+  "advisory": {
+    "words": [
+      {
+        "base": "hedging-adverb",
+        "variants": [
+          "arguably", "perhaps", "somewhat", "fairly", "rather", "quite",
+          "really", "basically", "actually", "essentially", "virtually",
+          "relatively"
+        ],
+        "note": "hedging adverb; cut unless load-bearing"
+      }
+    ],
+    "phrases": [
+      {
+        "phrase": "as of this writing",
+        "note": "time-contingent phrasing; run a currency check before publishing (see docs/AUTHORING-STRATEGY.md)"
+      },
+      {
+        "phrase": "these days",
+        "note": "time-contingent phrasing; run a currency check"
+      },
+      {
+        "phrase": "nowadays",
+        "note": "time-contingent phrasing; run a currency check"
+      },
+      {
+        "phrase": "no longer",
+        "note": "possible time-contingent claim; run a currency check"
+      },
+      {
+        "phrase": "relatively new",
+        "note": "possible time-contingent claim; run a currency check"
+      }
+    ],
+    "chars": [],
+    "regex": []
+  }
+}

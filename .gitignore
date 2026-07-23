@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.DS_Store
+
+# Your real project config and generated output — not part of the template.
+# Uncomment these once you've run `cp -r config.example config` and started
+# building on your own voice, if you don't want your real material committed
+# to this copy of the repo:
+# config/
+# voice/
+# drafts/
+# feedback/
+# sources/

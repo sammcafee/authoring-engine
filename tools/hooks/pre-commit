@@ -1,0 +1,5 @@
+#!/bin/sh
+# Voice gate: blocks a commit if any staged draft has a hard-fail voice
+# violation. Enable once with:
+#   git config core.hooksPath tools/hooks
+exec "$(git rev-parse --show-toplevel)/tools/voice-gate.sh" --staged

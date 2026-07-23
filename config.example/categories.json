@@ -1,0 +1,10 @@
+{
+  "_comment": "Example category list for /ingest. Replace with the handful of themes your own material naturally sorts into. Keep it small (5-10) so classification stays unambiguous.",
+  "categories": [
+    "craft-and-technique",
+    "tools-and-materials",
+    "process-and-workflow",
+    "community-and-teaching",
+    "reflections-and-lessons"
+  ]
+}
