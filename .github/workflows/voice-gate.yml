@@ -1,0 +1,38 @@
+name: Voice gate
+
+on:
+  pull_request:
+    paths:
+      - 'drafts/**/*.md'
+      - 'chapters/**/04-draft.md'
+      - 'tools/voice-gate.py'
+      - 'tools/voice-rules.json'
+      - 'config/voice-rules.local.json'
+
+jobs:
+  voice-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Determine changed draft files
+        id: changed
+        run: |
+          git fetch origin "${{ github.event.pull_request.base.sha }}" --depth=1
+          files=$(git diff --name-only "${{ github.event.pull_request.base.sha }}" "${{ github.sha }}" \
+            -- 'drafts/**/*.md' 'chapters/**/04-draft.md' | tr '\n' ' ')
+          echo "files=$files" >> "$GITHUB_OUTPUT"
+
+      - name: Run voice gate
+        if: steps.changed.outputs.files != ''
+        run: |
+          LOCAL_RULES=""
+          if [ -f config/voice-rules.local.json ]; then
+            LOCAL_RULES="--local-rules config/voice-rules.local.json"
+          fi
+          python3 tools/voice-gate.py $LOCAL_RULES ${{ steps.changed.outputs.files }}
