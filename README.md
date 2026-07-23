@@ -55,8 +55,10 @@ automatically fact-check anything. See `docs/AUTHORING-STRATEGY.md` for why.
    ```sh
    git config core.hooksPath tools/hooks
    ```
-4. Point `/bootstrap-voice` at your own writing to replace the example
-   profile with a real one, once you've tried the quickstart below.
+
+From here, either try the quickstart below first (recommended — it's a five
+minute walkthrough using bundled fabricated material), or skip straight to
+"Using this for a new project."
 
 ## Quickstart (using the bundled example)
 
@@ -78,11 +80,49 @@ Then, in Claude Code:
 4. Edit the draft as if it were real. Then run `/learn` to see how the
    diff-capture loop works.
 
-Once you're comfortable with the shape of it, point `/ingest` and
-`/bootstrap-voice` at your own writing and start over for real — `config/`
-(not `config.example/`) is gitignored-by-convention for personal projects
-that fork this repo privately; if you're keeping your fork public, keep your
-real voice material and any confidential guardrails out of it.
+Once you're comfortable with the shape of it, move on to the real thing
+below.
+
+## Using this for a new project
+
+This is the full loop, start to finish, for a real project rather than the
+bundled example. It assumes you've done the one-time Setup steps above.
+
+1. **Feed it your own writing.** Two ways in: point `/ingest` at a folder or
+   a git repo of your existing material (a blog archive, old essays, past
+   work — whatever you have), which sorts it into a categorized, deduped
+   intake queue under `sources/processed/`; or skip straight to step 2 and
+   hand `/bootstrap-voice` a folder directly if you don't need the sorting
+   step. Define your own categories in `config/categories.json` first if
+   you're using `/ingest` — there's no default list, since a generic tool
+   can't guess your subject matter.
+2. **Run `/bootstrap-voice`.** Point it at your own material (either the
+   folder you fed `/ingest`, or `sources/processed/` if you used it). This
+   is the one step that's genuinely new work, not ported from anywhere: a
+   guided analysis, done in conversation with Claude Code, that separates
+   your writing into "authentic" and "uncertain/AI-assisted" buckets, then
+   produces `voice/profile/`, `voice/purest/` (exemplars), `voice/eval-only/`
+   (anti-examples, never generation sources), and a starter `config/VOICE.md`.
+3. **Draft.** Run `/draft` — short-form for a single piece (angle → draft →
+   gate → one review pass → output), or long-form for anything with real
+   internal structure, like a chapter (bottom-up through `01-raw-statements.md`
+   → `02-clusters.md` → `03-skeleton.md` → `04-draft.md`). Every generated
+   passage is grounded in the voice profile from step 2 and gated
+   automatically before you see it.
+4. **Edit it.** The output is a scaffold, not a final — edit it the way you
+   normally would. `/draft` keeps a frozen, unedited copy alongside it
+   specifically so the next step has a baseline to diff against.
+5. **Run `/learn`.** After you've edited a batch, this diffs each one
+   against its frozen original, infers what the edit reveals, and appends
+   entries to `config/VOICE-LEDGER.md` — so the next `/draft` starts closer
+   to your actual voice. A repeatable, mechanical edit (a word or phrase you
+   keep cutting) gets proposed as a new rule for
+   `config/voice-rules.local.json` instead of relying on you to catch it by
+   hand every time.
+
+Steps 3-5 repeat indefinitely as your ongoing writing loop. Revisit step 2
+occasionally as your voice profile needs sharpening — it's a starting point,
+not a one-shot oracle.
 
 ## Project layout
 
