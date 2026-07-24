@@ -5,11 +5,9 @@ Point it at a body of your own writing, and it builds a profile of your
 voice, then runs a generate → gate → review → edit → learn loop for new
 pieces, so each one starts a little closer to how you actually write.
 
-This is a generic extraction of a pattern that's been running in production
-across two personal projects for a few weeks: a book manuscript and a
-short-form content pipeline. Nothing here is specific to either — it's the
-mechanism, with the personal material stripped out and replaced by an
-example you can run end to end before pointing it at your own.
+It's a generic mechanism, not tied to any particular author, subject, or
+publishing format — the repo ships with fabricated example material so you
+can run the whole loop end to end before pointing it at your own writing.
 
 ## What it does
 
@@ -98,8 +96,7 @@ bundled example. It assumes you've done the one-time Setup steps above.
    can't guess your subject matter.
 2. **Run `/bootstrap-voice`.** Point it at your own material (either the
    folder you fed `/ingest`, or `sources/processed/` if you used it). This
-   is the one step that's genuinely new work, not ported from anywhere: a
-   guided analysis, done in conversation with Claude Code, that separates
+   is a guided analysis, done in conversation with Claude Code, that separates
    your writing into "authentic" and "uncertain/AI-assisted" buckets, then
    produces `voice/profile/`, `voice/purest/` (exemplars), `voice/eval-only/`
    (anti-examples, never generation sources), and a starter `config/VOICE.md`.
@@ -135,10 +132,12 @@ voice/                   built by /bootstrap-voice (not checked in until you run
 drafts/, config/VOICE-LEDGER.md built by /draft and /learn as you use the pipeline
 ```
 
-## Where this came from
+## Design philosophy
 
-Extracted from two production repos that share a common shape but were never
-designed as a reusable tool. The genuinely reusable pieces — the gate script,
-the rule-overlay schema, the ledger format, the command shapes — are ported
-as-is. The one capability neither original repo had (`/bootstrap-voice`,
-generating a profile from raw material instead of hand-curating one) is new.
+Voice is judgment, so everything upstream of the deterministic gate — the
+analysis in `/bootstrap-voice`, the drafting in `/draft`, the diff-reading in
+`/learn` — is a guided protocol for a Claude Code session to work through
+with you, not a script trying to automate judgment away. Only the mechanical,
+genuinely rule-based parts (the gate itself, hooks, CI) are code. See
+`docs/AUTHORING-STRATEGY.md` for the full reasoning, including what this
+engine deliberately does not try to do.
