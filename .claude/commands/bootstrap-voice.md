@@ -20,6 +20,15 @@ material already filed by `/ingest`. More is better, but even 10-15 pieces
 across a couple of years is enough to start — you'll sharpen the profile
 through `/learn` as you go regardless.
 
+**Little or no written work?** If you've run `/interview`, its
+`chapters/*/00-interview-notes.md` files are your own words, captured
+verbatim. File them under `voice/spoken/` and build a **provisional**
+profile from them: they're good evidence for stance, recurring moves, and
+vocabulary, but spoken sentences aren't written sentences, so never use
+them as sentence-level generation exemplars. Mark the profile provisional
+in its header, lean harder on `/learn` for the first several drafts, and
+promote your own edited finals into `voice/purest/` as they accumulate.
+
 **Separate your material into two buckets before you start, and say so out
 loud in the run report:**
 
