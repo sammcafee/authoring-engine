@@ -20,9 +20,13 @@ Two modes:
 - **Greenfield.** No manuscript. Run all four modules in order.
 - **Gap-fill.** A manuscript exists but some sections are thin or missing
   (a section the draft promises but never delivers, a bridge with no
-  material behind it). Skip to module 3 for just those sections, and tag
-  everything you capture so it merges cleanly with the statements already
-  pulled from the manuscript.
+  material behind it). Tag everything you capture so it merges cleanly
+  with the statements already pulled from the manuscript. Before skipping
+  ahead, check that the book-level frame is still current: read the
+  existing plan or outline back to the author in two or three lines and ask
+  whether the thesis, reader, and scope still hold. If any has moved, run a
+  fast module 1 (and module 2, if the structure moved) before module 3.
+  Thin sections are often thin because the book's direction changed.
 
 ## Ground rules
 
@@ -57,6 +61,21 @@ Two modes:
 - **The files are the state.** If the interview spans sessions, read the
   files and resume from the first incomplete section. Never re-ask what is
   already answered there.
+- **Leave a `RESUME.md` at every pause.** "The files are the state" needs
+  one file that says which state: where the interview stopped, the exact
+  next question or prompt list, open gaps not to press on, and how to
+  restart ("paste the transcript and say: resume the interview"). Commit it
+  with everything else.
+- **Research pauses are supported.** The author may stop mid-interview and
+  ask you to look something up. Do it, record every finding in an evidence
+  file with its source and a status of `verify`, summarize it briefly, then
+  return to the exact question you paused on. Research informs the author's
+  choices; it never writes a raw statement on their behalf. A finding only
+  becomes a claim when the author says it in their own words.
+- **Numbering is continuous.** Turn numbers (`T1`, `T2`, ...) run across the
+  whole interview, so a tag like `[SPOKEN: T12]` is unique in the book.
+  Modules 1 and 2 record their turns in `book/00-interview-notes.md`;
+  module 3 records each chapter's turns in that chapter's notes file.
 
 ## Module 1: Frame → `book/BOOK-BRIEF.md`
 
@@ -79,8 +98,11 @@ Questions (skip any already answered):
   research you lean on, interviews you've done with other people, data,
   prior talks or posts. Inventory it; don't collect it yet.
 - Assertion stance: does a claim from your own experience need a citation
-  every time, or does your experience stand on its own? (This decides how
-  hard module 4 tests your claims.)
+  every time, or does your experience stand on its own? Is this a
+  footnoted book? (This decides how hard module 4 tests claims and how
+  evidence is handled for the whole book. Always ask it explicitly, even on
+  the fast track; never fill it with a default or carry one over from the
+  author's previous book.)
 
 Format:
 
@@ -152,8 +174,20 @@ Drafting order: <list>
 ## Module 3: Chapter mining → `chapters/<NN-slug>/`
 
 The heart of the interview. One chapter at a time, in the approved drafting
-order. For each chapter, work through these question families, following
-energy rather than marching through them in order:
+order.
+
+**Voice first.** Most authors talk through an argument far more easily than
+they type it, and one-question-at-a-time Q&A that suits modules 1 and 2
+(short factual answers) tends to stall here. So at the start of each
+chapter, offer a riff list: six to eight prompts covering the question
+families below, written for this chapter's claim. Ask the author to record
+a voice memo working through them in any order, as long as they like, and
+paste the transcript. Mine it (claims, stories, evidence, boundaries), show
+what you captured, and ask only about the gaps. Fall back to single
+questions when the author prefers, or for the gaps after a riff.
+
+The question families, to build the riff list from and to probe with,
+following energy rather than marching through them in order:
 
 | Family | Example question | Becomes |
 |---|---|---|
@@ -198,10 +232,26 @@ Outputs per chapter (create the folder if it doesn't exist):
   Before adding a quote, check `evidence.md` in every other chapter so the
   same quote or interview moment isn't used twice.
 
+Book-level, alongside the per-chapter files:
+
+- **`book/CASE-BANK.md`**: other organizations' stories (a company that
+  did the thing, or failed to), kept once for use case by case in any
+  chapter. One row per case: what it shows, how it might be used (lead
+  example, cautionary contrast, adjacent model), and links to the evidence
+  rows behind it. These are not the author's stories (`stories.md`) and not
+  bare facts (`evidence.md`).
+
 Granularity check before a chapter is done: any raw statement that bundles
 two claims gets split. Any claim with no story, mechanism, or evidence
 behind it gets one more question, or gets marked `[ASSERTION]` if the
 author's assertion stance says their experience stands on its own.
+
+**When the author declines a story.** Sometimes the answer is "I can't
+give that here," for confidentiality or because of where they are. Don't
+re-ask. Mark the claim `[STORY GAP]`, name where a case could come from
+instead (recorded interviews, the case bank, research), mark it
+`[ASSERTION]` if the brief's stance allows, note in `RESUME.md` that the
+gap is not to be pressed, and move on.
 
 ## Module 4: Controversy pass → `chapters/<NN-slug>/CONTROVERSY-PREP.md`
 
@@ -229,7 +279,8 @@ voiced, not gated, and never a source of prose to lift directly.
 - [ ] The chapter's one-line claim from `CHAPTER-MAP.md` is supported by
       its raw statements, or the map has been updated to match what the
       author actually said.
-- [ ] At least one story the author owns.
+- [ ] At least one story the author owns, or an open `[STORY GAP]` with a
+      named alternative source.
 - [ ] At least one concrete practice a reader can act on.
 - [ ] At least one boundary or counter-position, for the steelman beat.
 - [ ] Every raw statement is atomic and tagged; no `[PROPOSED]` remains.
