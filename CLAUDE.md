@@ -11,7 +11,7 @@ principles behind it.
 
 ## How the pieces fit together
 
-- `/bootstrap-voice`, `/ingest`, `/draft`, `/learn` (in `.claude/commands/`)
+- `/bootstrap-voice`, `/ingest`, `/interview`, `/draft`, `/learn` (in `.claude/commands/`)
   are prose protocols for a Claude Code session to execute with you, turn by
   turn — not scripts. That's deliberate: voice is judgment, and every part of
   this pipeline that requires judgment stays a guided conversation. Only the

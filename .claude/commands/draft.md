@@ -52,7 +52,10 @@ Work bottom-up, in order, one file per stage under
 `chapters/<name>/`:
 
 1. **`01-raw-statements.md`** — atomic claims pulled from any existing source
-   material, neutral and voiceless on purpose.
+   material, neutral and voiceless on purpose. No existing material? Run
+   `/interview` first: it produces this file (and the chapter's stories,
+   evidence, and controversy prep) from conversation with you, so you start
+   here at stage 2.
 2. **`02-clusters.md`** — group the statements into themes. This is the real
    thinking: what belongs together, what the through-lines are.
 3. **`03-skeleton.md`** — section order built from the clusters.

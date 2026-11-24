@@ -15,6 +15,11 @@ can run the whole loop end to end before pointing it at your own writing.
   material filed by `/ingest`) and produce a voice profile: what your writing
   actually does, its sentence-level habits, its structure, and the patterns
   that should never appear in generated output.
+- **`/interview`**: for a non-fiction book with no existing manuscript:
+  interview you to build a book brief, a chapter map, and each chapter's
+  Stage 1 raw statements (plus stories, evidence, and a controversy pass),
+  ready for `/draft` long-form to pick up at Stage 2. Also fills gaps in an
+  existing manuscript.
 - **`/ingest`** — pull new source material into a categorized, deduped intake
   queue, from a local folder or a git repo — no cloud connector required.
 - **`/draft`** — generate a scaffold grounded in your voice profile, run it
@@ -86,7 +91,10 @@ below.
 This is the full loop, start to finish, for a real project rather than the
 bundled example. It assumes you've done the one-time Setup steps above.
 
-1. **Feed it your own writing.** Two ways in: point `/ingest` at a folder or
+1. **Feed it your own writing.** (Writing a book with no manuscript yet?
+   Start with `/interview` instead: it builds the book's Stage 1 material
+   from conversation, and its interview notes can seed a provisional voice
+   profile if you have little written work to point step 2 at.) Two ways in: point `/ingest` at a folder or
    a git repo of your existing material (a blog archive, old essays, past
    work — whatever you have), which sorts it into a categorized, deduped
    intake queue under `sources/processed/`; or skip straight to step 2 and
@@ -125,11 +133,12 @@ not a one-shot oracle.
 
 ```
 tools/                  the deterministic gate + starter rules + hooks
-.claude/commands/        the four protocol commands (see above)
+.claude/commands/        the five protocol commands (see above)
 docs/                    AUTHORING-STRATEGY.md, voice-ledger-format.md
 config.example/          placeholder rules + fabricated sample posts
 voice/                   built by /bootstrap-voice (not checked in until you run it)
 drafts/, config/VOICE-LEDGER.md built by /draft and /learn as you use the pipeline
+book/, chapters/         built by /interview (brief, chapter map, Stage 1 files) and /draft long-form
 ```
 
 ## Design philosophy
